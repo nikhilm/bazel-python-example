@@ -7,6 +7,8 @@ http_archive(
     url = "https://github.com/bazelbuild/rules_python/releases/download/0.20.0/rules_python-0.20.0.tar.gz",
 )
 
+register_toolchains("//:system-py3")
+
 load("@rules_python//python:repositories.bzl", "py_repositories")
 
 py_repositories()

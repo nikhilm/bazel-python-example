@@ -9,3 +9,22 @@ py_test(
     name="example_test",
     srcs=["example_test.py"],
 )
+
+load("@bazel_tools//tools/python:toolchain.bzl", "py_runtime_pair")
+
+py_runtime(
+    name = "python3.10",
+    interpreter_path = "/usr/bin/python3.10",
+    python_version = "PY3",
+)
+
+py_runtime_pair(
+    name = "py3.10",
+    py3_runtime = ":python3.10",
+)
+
+toolchain(
+    name = "system-py3",
+    toolchain = ":py3.10",
+    toolchain_type = "@bazel_tools//tools/python:toolchain_type",
+)
